@@ -203,4 +203,8 @@ nav h1 {
   .big {
     width: 50px;
   }
+
+  .modal {
+    width: 90%;
+  }
 }

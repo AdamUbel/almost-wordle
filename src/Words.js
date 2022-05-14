@@ -23,7 +23,7 @@ export const makeWordSet = async () => {
   await fetch(WordBank)
     .then((res) => res.text())
     .then((result) => {
-      const wordArr = result.split("\r\n");
+      const wordArr = result.split(/\r?\n/);
       wordSet = new Set(wordArr);
     });
 

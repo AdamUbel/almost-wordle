@@ -28,7 +28,7 @@ const Key = ({ keyVal }) => {
 
   const getGridColor = (word, guess, letterPos) => {
     // correct (matched) index letter
-    console.log(word, guess);
+    // console.log(word, guess);
     if (guess[letterPos] === word[letterPos]) {
       return "correct";
     }

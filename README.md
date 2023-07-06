@@ -4,7 +4,7 @@ Welcome to the Wordle Clone App! This is a React application that allows you to 
 
 ## Live Demo
 
-Check out the live demo of the Wordle Clone App [here](https://almost-wordle-hlng1op8q-adamubel.vercel.app/).
+Check out the live demo of the Wordle Clone App [here](https://almost-wordle.vercel.app/).
 
 ## Features
 

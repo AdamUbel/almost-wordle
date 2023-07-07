@@ -1,5 +1,6 @@
 import WordBank from "./word-bank.txt";
 
+// Grid default state
 export const gridDefault = [
   ["", "", "", "", ""],
   ["", "", "", "", ""],
@@ -9,6 +10,7 @@ export const gridDefault = [
   ["", "", "", "", ""],
 ];
 
+// Grid color default state
 export const gridColorDefault = [
   ["def", "def", "def", "def", "def"],
   ["def", "def", "def", "def", "def"],
@@ -18,6 +20,7 @@ export const gridColorDefault = [
   ["def", "def", "def", "def", "def"],
 ];
 
+// Function to make a word set from the WordBank file
 export const makeWordSet = async () => {
   let wordSet;
   await fetch(WordBank)
@@ -30,13 +33,15 @@ export const makeWordSet = async () => {
   return { wordSet };
 };
 
+// Function to get a random word from the word bank set
 export const getRandomWord = async (wordBankSet) => {
   const randomWord = await [...wordBankSet][Math.floor(Math.random() * wordBankSet.size)];
-  const letterCount = await getWordDeatils([...randomWord.toUpperCase()]);
+  const letterCount = await getWordDetails([...randomWord.toUpperCase()]);
   return { word: randomWord.toUpperCase(), letterCount, wordInfo: [...randomWord.toUpperCase()] };
 };
 
-const getWordDeatils = (wordArr) => {
+// Function to get the letter count details of a word
+const getWordDetails = (wordArr) => {
   const wordDetails = {};
   for (let i = 0; i < wordArr.length; i++) {
     if (wordDetails.hasOwnProperty(wordArr[i])) {

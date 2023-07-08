@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-
 import { AppContext } from "../App";
 
+// Key component
 const Key = ({ keyVal }) => {
+  // Accessing relevant states and functions from AppContext using useContext hook
   const {
     grid,
     setGrid,
@@ -26,9 +27,9 @@ const Key = ({ keyVal }) => {
 
   const { selectedRow, selectedLetter } = currPosition;
 
+  // Function to determine the grid color based on the guessed word and the target word
   const getGridColor = (word, guess, letterPos) => {
-    // correct (matched) index letter
-    // console.log(word, guess);
+    // Correct (matched) index letter
     if (guess[letterPos] === word[letterPos]) {
       return "correct";
     }
@@ -36,7 +37,7 @@ const Key = ({ keyVal }) => {
     let wrongWord = 0;
     let wrongGuess = 0;
     for (let i = 0; i < word.length; i++) {
-      // count the wrong (unmatched) letters
+      // Count the wrong (unmatched) letters
       if (word[i] === guess[letterPos] && guess[i] !== guess[letterPos]) {
         wrongWord++;
       }
@@ -46,8 +47,7 @@ const Key = ({ keyVal }) => {
         }
       }
 
-      // an unmatched guess letter is wrong if it pairs with
-      // an unmatched word letter
+      // An unmatched guess letter is wrong if it pairs with an unmatched word letter
       if (i >= letterPos) {
         if (wrongGuess === 0) {
           break;
@@ -58,10 +58,11 @@ const Key = ({ keyVal }) => {
       }
     }
 
-    // otherwise not any
+    // Otherwise, not any
     return "used";
   };
 
+  // Function to register a key press
   const registerKey = async () => {
     const newGrid = [...grid];
     const newGridColor = [...gridColor];
@@ -70,7 +71,8 @@ const Key = ({ keyVal }) => {
     const newContains = [...containsKeys];
     const newAttempt = [...guesses];
     let newGuess = guessedWord;
-    // register enter
+
+    // Register ENTER key
     if (keyVal === "ENTER") {
       if (guessedWord.length === 5 && !wordBankSet.has(guessedWord)) {
         return alert("Un-Known Word Entered");
@@ -101,7 +103,7 @@ const Key = ({ keyVal }) => {
       }
       return;
     }
-    // register delete
+    // Register DELETE key
     else if (keyVal === "DEL") {
       if (selectedLetter > 0) {
         newGrid[selectedRow][selectedLetter - 1] = "";
@@ -113,7 +115,7 @@ const Key = ({ keyVal }) => {
         setCurrPosition({ ...currPosition, selectedLetter: selectedLetter - 1 });
       }
     }
-    // register letters
+    // Register letters
     else if (selectedLetter < 5) {
       newGrid[selectedRow][selectedLetter] = keyVal;
       setGrid(newGrid);
